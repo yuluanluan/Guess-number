@@ -1,0 +1,15 @@
+# test_Calculator.py （1）
+import unittest
+from calculator import Calculator
+
+class TestCalculator(unittest.TestCase):
+
+    def test_generate_random_number_unique_digits(self):
+        calculator = Calculator()
+        random_number = calculator.generate_random_number()
+        self.assertEqual(len(random_number), 4, "Random number should have a length of 4")
+        self.assertTrue(all(c.isdigit() for c in random_number), "Random number should consist of digits")
+        self.assertEqual(len(set(random_number)), 4, "Random number should have unique digits")
+
+if __name__ == '__main__':
+    unittest.main()
