@@ -1,0 +1,23 @@
+import unittest
+from unittest.mock import patch
+from game import play_game
+
+
+class TestPlayerWin(unittest.TestCase):
+
+    @patch('builtins.input', side_effect=["1234", "exit"])
+    def test_player_wins(self, mock_input):
+        with patch('builtins.print') as mock_print:
+            play_game()
+            expected_message = "Congratulations! You guessed it right in 1 attempts."
+            play_again_message = "Do you want to play again? (Y/N): "
+            expected_play_again_message = "GG"
+
+            mock_print.assert_any_call(expected_message)
+            mock_print.assert_any_call(play_again_message)
+            mock_input.assert_called_with(play_again_message)
+            mock_print.assert_called_with(expected_play_again_message)
+
+
+if __name__ == '__main__':
+    unittest.main()
