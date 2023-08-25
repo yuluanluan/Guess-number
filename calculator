@@ -1,0 +1,11 @@
+class Calculator:
+    def add(self, a, b):
+        return a + b
+
+    def generate_random_number(self):
+        import random
+
+        while True:
+            random_number = ''.join(random.sample('0123456789', 4))
+            if len(set(random_number)) == 4:
+                return random_number
